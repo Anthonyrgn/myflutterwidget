@@ -82,6 +82,27 @@ class BasicsPage extends StatelessWidget {
                       thickness: 1,
                     ),
                     Container(
+                      margin: EdgeInsets.all(20),
+                      height: 200,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("images/beach.jpg"),
+                          fit: BoxFit.cover,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.yellow,
+                            offset: Offset(2, 2),
+                            blurRadius: 2,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                        // shape: BoxShape.circle,
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                    ),
+                    Container(
                       color: Colors.teal,
                       padding: EdgeInsets.all(5),
                       child: Row(
