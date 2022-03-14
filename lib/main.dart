@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.amber,
       ),
       home: BasicsPage(),
     );
@@ -50,27 +50,55 @@ class BasicsPage extends StatelessWidget {
           child: Card(
             child: Padding(
               padding: EdgeInsets.all(3),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Nom de l'image"),
-                  Container(
-                    color: Colors.teal,
-                    padding: EdgeInsets.all(5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("Nom de l'image"),
+                    Stack(
+                      alignment: Alignment.topCenter,
                       children: [
-                        fromAsset(height: 90, width: 90),
-                        simpleText("Anthony Ringeisen"),
+                        fromAsset(height: 200, width: size.width),
+                        Padding(
+                          padding: EdgeInsets.only(top: 150),
+                          child: profilePicture(radius: 50),
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.favorite),
+                            Icon(Icons.verified_user),
+                            Spacer(),
+                            Text("Un autre element"),
+                          ],
+                        ),
                       ],
                     ),
-                  ),
-                  fromNetwork(),
-                  spanDemo(),
-                ],
+                    Divider(
+                      color: Colors.teal,
+                      height: 10,
+                      thickness: 1,
+                    ),
+                    Container(
+                      color: Colors.teal,
+                      padding: EdgeInsets.all(5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          profilePicture(radius: 40),
+                          // fromAsset(height: 90, width: 90),
+                          Expanded(child: simpleText("Anthony Ringeisen")),
+                        ],
+                      ),
+                    ),
+                    fromNetwork(),
+                    spanDemo(),
+                    fromNetwork(),
+                  ],
+                ),
               ),
             ),
             elevation: 7,
@@ -78,6 +106,14 @@ class BasicsPage extends StatelessWidget {
           )
         ),
       ),
+    );
+  }
+
+  CircleAvatar profilePicture({double? radius}){
+    return  CircleAvatar(
+      radius: radius,
+      backgroundColor: Colors.blue,
+      foregroundImage: AssetImage("images/beach.jpg"),
     );
   }
 
